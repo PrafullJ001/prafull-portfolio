@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,21 +22,23 @@ const ContactForm = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setStatus('Sending...');
+  try {
+    // Force the use of the current domain instead of a hardcoded localhost
+    const response = await axios.post(`${window.location.origin}/api/send`, formData);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus('Sending...');
-    try {
-      const response = await axios.post('http://localhost:3033/api/send', formData); 
-      setStatus('Message Sent Successfully!');
-      alert(response.data);
-      setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
-      console.error('Error sending email:', error);
-      setStatus('Failed to send message.');
-      alert('Error sending email');
-    }
-  };
+    setStatus('Message Sent Successfully!');
+    alert(response.data.message || "Sent!");
+    setFormData({ name: '', email: '', message: '' });
+  } catch (error) {
+    // Detailed logging to see exactly what failed
+    console.error('Full Error Object:', error);
+    setStatus('Failed to send message.');
+    alert(`Error: ${error.response?.data?.error || error.message}`);
+  }
+};
 
   return (
     <div className="contact_section" id="contact">
@@ -62,7 +65,6 @@ const ContactForm = () => {
             <p>I'm open to freelance work, full-time opportunities, or just a friendly chat about tech!</p>
           </div>
 
-          {/* Clickable Phone Card */}
           <a href="tel:+918010144372" className="contact_card_link phone_card">
             <div className="icon_box">
               <FontAwesomeIcon icon={faPhone} />
@@ -74,7 +76,6 @@ const ContactForm = () => {
             <FontAwesomeIcon icon={faArrowRight} className="arrow_icon" />
           </a>
 
-          {/* Clickable Email Card */}
           <a href="mailto:jprafull40@gmail.com" className="contact_card_link email_card">
             <div className="icon_box">
               <FontAwesomeIcon icon={faEnvelope} />
@@ -86,21 +87,19 @@ const ContactForm = () => {
             <FontAwesomeIcon icon={faArrowRight} className="arrow_icon" />
           </a>
 
-          {/* Social Row */}
           <div className="social_row">
             <a href="https://github.com/PrafullJ001" target="_blank" rel="noreferrer" className="mini_social_btn">
               <FontAwesomeIcon icon={faGithub} />
               <span>GitHub</span>
             </a>
-            <a href="https://www.linkedin.com/in/prafulljadhav99?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" className="mini_social_btn">
+            <a href="https://www.linkedin.com/in/prafulljadhav99" target="_blank" rel="noreferrer" className="mini_social_btn">
               <FontAwesomeIcon icon={faLinkedin} />
               <span>LinkedIn</span>
             </a>
           </div>
-
         </motion.div>
 
-        {/* --- RIGHT SIDE: MINIMALIST FORM --- */}
+        {/* --- RIGHT SIDE: FORM --- */}
         <motion.form 
           className="modern_form" 
           onSubmit={handleSubmit}
@@ -153,6 +152,7 @@ const ContactForm = () => {
         </motion.form>
 
       </div>
+
       <footer className="contact_footer">
         <hr className="footer_divider" />
         <div className="footer_content">
@@ -162,7 +162,7 @@ const ContactForm = () => {
           </p>
         </div>
       </footer>
-      
+
       <BackToTopButton />
     </div>
   );
