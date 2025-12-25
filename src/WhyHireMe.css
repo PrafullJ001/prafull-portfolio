@@ -1,0 +1,98 @@
+.terminal_section {
+  background-color: #020205;
+  padding: 80px 5%;
+  font-family: 'Inter', sans-serif;
+  color: #e0e0e0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.terminal_grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 25px;
+}
+
+.terminal_card {
+  background: rgba(15, 15, 25, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+
+/* THE HOVER EFFECT: Glowing Border */
+.terminal_card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+              rgba(59, 130, 246, 0.15), transparent 40%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.terminal_card:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+}
+
+.card_header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 15px;
+}
+
+.dot { width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 10px #3b82f6; }
+.dot.blue { background: #3b82f6; box-shadow: 0 0 10px #3b82f6; }
+
+.small_heading {
+  font-size: 1rem;
+  letter-spacing: 3px;
+  font-weight: 800;
+  color: #888;
+}
+
+/* Experience Styling */
+.company { font-size: 1.5rem; color: #fff; margin: 0; }
+.type { font-size: 1; color: #3b82f6; background: rgba(59, 130, 246, 0.1); padding: 2px 8px; border-radius: 4px; vertical-align: middle; margin-left: 10px; }
+.duration { font-size: 1rem; color: #a9b7c6; margin-top: 5px; font-weight: 600; }
+
+.project_callout {
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.project_name { color: #3b82f6; font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+.project_desc { font-size: 1rem; color: #a9b7c6; line-height: 1.6; }
+
+.mini_tags { display: flex; gap: 8px; margin-top: 15px; }
+.mini_tags span { font-size: 1rem; color: #a9b7c6; border: 1px solid #333; padding: 3px 10px; border-radius: 4px; }
+
+/* Education Styling */
+.edu_timeline { display: flex; flex-direction: column; gap: 25px; }
+.year { font-size: 0.75rem; font-weight: 800; color: #3b82f6; }
+.degree { font-size: 1rem; color: #fff; font-weight: 600; margin: 4px 0; }
+.school { font-size: 1rem; color: #a9b7c6; }
+
+@media (max-width: 900px) {
+  .terminal_grid { grid-template-columns: 1fr; }
+}
+.mini_tags {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 10px; /* Adds space between the tags */
+  max-width: 400px; /* Optional: limits the width so they don't stretch too far */
+}

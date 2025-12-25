@@ -1,0 +1,157 @@
+/* Section Spacing */
+.projects_section {
+    padding: 100px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.heading1 {
+    text-align: center;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 48px;
+    margin-bottom: 80px;
+    font-weight: 700;
+}
+
+.projects_list {
+    display: flex;
+    flex-direction: column;
+    gap: 100px; /* Space between projects */
+}
+
+/* --- THE ROW LAYOUT --- */
+.project_row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+}
+
+/* Reverse layout for even items (Zig-Zag) */
+.reverse_layout {
+    flex-direction: row-reverse;
+}
+
+/* --- IMAGE SIDE --- */
+.project_image_container {
+    flex: 1.2; /* Takes up slightly more space than text */
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.project_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%) contrast(1.1); /* Cinematic look */
+    transition: all 0.4s ease;
+}
+
+/* Hover Effect on Image */
+.project_image_container:hover {
+    transform: translateY(-5px);
+    border-color: #03B0FD;
+    box-shadow: 0 20px 50px rgba(3, 176, 253, 0.15);
+}
+
+.project_image_container:hover .project_img {
+    filter: none; /* Full color on hover */
+    transform: scale(1.03);
+}
+
+/* --- TEXT SIDE --- */
+.project_info {
+    flex: 1;
+    z-index: 2; /* Ensures text stays above if we overlap later */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Text alignment based on layout */
+.project_row .project_info { text-align: left; }
+.reverse_layout .project_info { text-align: right; }
+
+.project_title {
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* The Description Box */
+.project_desc_box {
+    background: #112240; /* Deep blue/grey */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    color: #a8b2d1; /* Soft grey text */
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Tech List */
+.project_tech_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-family: "Consolas", monospace;
+    font-size: 14px;
+    color: #03B0FD;
+}
+
+/* Align tags based on layout */
+.reverse_layout .project_tech_list,
+.reverse_layout .project_links {
+    justify-content: flex-end;
+}
+
+/* --- GITHUB BUTTON --- */
+.github_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border: 1px solid #03B0FD;
+    border-radius: 4px;
+    color: #03B0FD;
+    text-decoration: none;
+    font-family: "Consolas", monospace;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.github_btn:hover {
+    background: rgba(3, 176, 253, 0.1);
+    transform: translateY(-3px);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media screen and (max-width: 900px) {
+    .project_row, .reverse_layout {
+        flex-direction: column; /* Stack vertically on mobile */
+        gap: 30px;
+    }
+
+    .project_image_container {
+        width: 100%;
+    }
+
+    .project_info, .reverse_layout .project_info {
+        text-align: left; /* Always align left on mobile */
+    }
+
+    .project_tech_list, .reverse_layout .project_tech_list,
+    .project_links, .reverse_layout .project_links {
+        justify-content: flex-start;
+    }
+}
