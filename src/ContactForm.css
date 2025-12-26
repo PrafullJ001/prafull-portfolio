@@ -304,3 +304,52 @@
 .footer_name {
   color: #03B0FD; 
 }
+
+/* Mobile Optimization for Contact Section */
+@media (max-width: 768px) {
+  .contact_container {
+    flex-direction: column; /* Stack left side and form vertically */
+    gap: 30px;
+    padding: 0 15px;
+  }
+
+  .contact_actions, 
+  .modern_form {
+    width: 100% !important; /* Force full width */
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .modern_form {
+    padding: 25px 20px; /* Adjust internal padding for smaller screens */
+  }
+
+  .form_header h3 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .input_wrapper input, 
+  .input_wrapper textarea {
+    font-size: 16px; /* Prevents iOS from zooming in on focus */
+  }
+
+  .neon_btn {
+    width: 100%; /* Make the send button full width on mobile */
+    justify-content: center;
+  }
+}
+
+/* Adjust Social Buttons for very small screens */
+@media (max-width: 400px) {
+  .social_row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .mini_social_btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
