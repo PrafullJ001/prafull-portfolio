@@ -29,8 +29,8 @@ const handleSubmit = async (e) => {
     // Force the use of the current domain instead of a hardcoded localhost
     const response = await axios.post(`${window.location.origin}/api/send`, formData);
 
-    setStatus('✅Message Sent Successfully!');
-    alert(response.data.message || "Sent!");
+    setStatus('Message Sent Successfully!');
+    alert("✅ Message sent successfully");
     setFormData({ name: '', email: '', message: '' });
   } catch (error) {
     // Detailed logging to see exactly what failed
