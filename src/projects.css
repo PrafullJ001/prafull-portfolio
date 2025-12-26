@@ -155,3 +155,17 @@
         justify-content: flex-start;
     }
 }
+.project_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This keeps the image inside the box without stretching */
+    display: block;
+    border-radius: 8px; /* Optional: matches your box corners */
+}
+
+.project_image_container {
+    background-color: #000; /* This is your "black box" background */
+    overflow: hidden;
+    position: relative;
+    /* Ensure height/width are defined if they aren't already */
+}
