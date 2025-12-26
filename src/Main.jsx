@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin, faHtml5, faCss3Alt, faBootstrap } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faCodeBranch, faLaptopCode, faDatabase, faServer, faWind } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
-import ResumePDF from './Prafull_Jadhav_Viit.pdf'; 
+import ResumePDF from './Prafull_Jadhav-Viit.pdf'; 
 //import { Link } from 'react-router-dom';
 
 // 1. FIXED: Moved 'roles' outside the component so it doesn't get recreated on every render

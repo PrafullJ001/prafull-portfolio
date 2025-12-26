@@ -387,3 +387,28 @@ body.light-mode p {
   /* Very light blue/white for the second part to keep it readable */
   color: #e0f2fe; 
 }
+
+/* Mobile View for Logo */
+@media screen and (max-width: 768px) {
+    .logo_text {
+        font-size: 1.2rem !important; /* Adjust this value to make it smaller/larger */
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+    .logo_text span {
+        font-size: 1.2rem !important; /* Ensures the first part is smaller */
+    }
+
+    .logo_text .last_name {
+        font-size: 1.2rem !important; /* Ensures the /Jadhav part is also smaller */
+    }
+}
+
+/* For very small phones (iPhone SE) */
+@media screen and (max-width: 350px) {
+    .logo_text {
+        font-size: 1rem !important;
+    }
+}
