@@ -305,51 +305,33 @@
   color: #03B0FD; 
 }
 
-/* Mobile Optimization for Contact Section */
-@media (max-width: 768px) {
-  .contact_container {
-    flex-direction: column; /* Stack left side and form vertically */
-    gap: 30px;
-    padding: 0 15px;
-  }
-
-  .contact_actions, 
+/* Specifically targeting only the "Send a Message" block on mobile */
+@media (max-width: 480px) {
   .modern_form {
-    width: 100% !important; /* Force full width */
-    max-width: 100%;
-    margin: 0;
-  }
-
-  .modern_form {
-    padding: 25px 20px; /* Adjust internal padding for smaller screens */
+    padding: 15px !important; /* Reduces the inner space of the box */
+    margin: 0 auto !important;
+    width: 95% !important; /* Keeps it slightly away from screen edges */
+    border-radius: 12px !important; /* Makes it look sleeker */
   }
 
   .form_header h3 {
-    font-size: 1.5rem;
-    text-align: center;
+    font-size: 1.2rem !important; /* Smaller header text */
+    margin-bottom: 15px !important;
+  }
+
+  .input_wrapper {
+    margin-bottom: 12px !important; /* Reduces gap between input fields */
   }
 
   .input_wrapper input, 
   .input_wrapper textarea {
-    font-size: 16px; /* Prevents iOS from zooming in on focus */
+    padding: 10px !important; /* Smaller internal padding for text boxes */
+    font-size: 14px !important; /* Smaller text for a more compact look */
   }
 
   .neon_btn {
-    width: 100%; /* Make the send button full width on mobile */
-    justify-content: center;
-  }
-}
-
-/* Adjust Social Buttons for very small screens */
-@media (max-width: 400px) {
-  .social_row {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .mini_social_btn {
-    width: 100%;
-    justify-content: center;
+    padding: 10px 20px !important; /* Makes the button smaller/thinner */
+    font-size: 14px !important;
   }
 }
 
