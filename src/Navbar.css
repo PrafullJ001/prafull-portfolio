@@ -378,7 +378,7 @@ body.light-mode p {
 }
 .logo_text {
   font-family: 'Inter', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   /* Brighter Blue for the first part */
   color:#03B0FD; 
 }
