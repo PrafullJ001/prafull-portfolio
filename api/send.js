@@ -46,11 +46,14 @@
 
 
 
-
 const nodemailer = require("nodemailer");
 
 module.exports = async function handler(req, res) {
-  // Handle CORS and preflight requests
+  // 1. CORS Headers (Crucial for Vercel)
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -61,7 +64,6 @@ module.exports = async function handler(req, res) {
 
   const { name, email, message } = req.body;
 
-  // Basic validation
   if (!name || !email || !message) {
     return res.status(400).json({ error: "Missing required fields" });
   }
@@ -71,10 +73,11 @@ module.exports = async function handler(req, res) {
       service: "gmail",
       auth: {
         user: "jprafull40@gmail.com",
-        pass: process.env.EMAIL_PASS, // Make sure this is set in Vercel!
+        pass: process.env.EMAIL_PASS, 
       },
     });
 
+    // 2. Use await directly on the sendMail call
     await transporter.sendMail({
       from: `"Portfolio Contact" <jprafull40@gmail.com>`,
       to: "jprafull40@gmail.com",
