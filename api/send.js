@@ -86,7 +86,7 @@ module.exports = async function handler(req, res) {
       text: `You have a new message:\n\nName: ${name}\nEmail: ${email}\n\nMessage: ${message}`,
     });
 
-    return res.status(200).json({ success: true, message: "Email sent!" });
+    return res.status(200).json({ success: true, message: "Message Sent !" });
   } catch (err) {
     console.error("MAIL ERROR:", err);
     return res.status(500).json({ success: false, error: err.message });
