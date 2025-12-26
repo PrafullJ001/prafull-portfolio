@@ -304,37 +304,57 @@
 .footer_name {
   color: #03B0FD; 
 }
+
+/* Mobile View Fixes */
 @media screen and (max-width: 480px) {
-    /* 1. Make the whole form container narrower */
+    /* 1. The Main Form Container */
     .modern_form {
-        padding: 15px !important;   /* Thinner inner spacing */
-        max-width: 90% !important;  /* Stops it from being too wide */
-        margin: 0 auto !important;   /* Centers it */
-        box-sizing: border-box !important;
+        padding: 20px !important;
+        width: 90% !important;
+        margin: 0 auto !important;
+        background: rgba(255, 255, 255, 0.05); /* Slight glass effect */
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px !important;
     }
 
-    /* 2. Shrink the header */
-    .form_header h3 {
-        font-size: 18px !important;
-        margin-bottom: 10px !important;
+    /* 2. Fix the Button Shadow mismatch */
+    .neon_btn {
+        width: 100% !important; /* Full width looks cleaner on mobile */
+        padding: 12px !important;
+        font-size: 14px !important;
+        background: #00a8ff; /* Your primary blue */
+        border: none;
+        color: black;
+        font-weight: bold;
+        border-radius: 50px !important; /* Rounded pill shape */
+        
+        /* Fixed Shadow: Reduced spread and centered it */
+        box-shadow: 0 0 15px rgba(0, 168, 255, 0.4) !important; 
+        transition: all 0.3s ease;
     }
 
-    /* 3. Make input fields and textarea smaller */
-    .input_wrapper {
-        margin-bottom: 8px !important; /* Tighter vertical spacing */
+    /* 3. Fix the Back to Top Button Shadow */
+    /* Assuming the class name is .back_to_top or similar */
+    .back_to_top_btn, .scroll-to-top { 
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 45px !important;
+        height: 45px !important;
+        
+        /* Centered subtle glow */
+        box-shadow: 0 0 15px rgba(0, 168, 255, 0.3) !important;
+        background: #1a1a1a !important;
+        border: 1px solid rgba(0, 168, 255, 0.5) !important;
     }
 
+    /* 4. Adjust Input Fields for better mobile feel */
     .input_wrapper input, 
     .input_wrapper textarea {
-        padding: 8px 12px !important; /* Smaller height for boxes */
-        font-size: 14px !important;    /* Smaller text */
-    }
-
-    /* 4. Make the send button smaller */
-    .neon_btn {
-        padding: 8px 15px !important;
-        font-size: 14px !important;
-        width: auto !important; /* Don't make it full width if you want it small */
-        margin-top: 5px !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        padding: 12px !important;
+        border-radius: 8px !important;
+        color: #fff !important;
     }
 }
