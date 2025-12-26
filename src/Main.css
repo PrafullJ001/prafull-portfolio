@@ -312,3 +312,37 @@
         font-size: 14px;
     }
 }
+
+/* Mobile Optimization for Buttons */
+@media (max-width: 480px) {
+  .hero_btn_group {
+    display: flex;
+    flex-direction: row; /* Keep them side by side */
+    justify-content: center; /* Center them */
+    gap: 10px; /* Space between them */
+    width: 100%; /* Ensure container takes full width */
+    padding: 0 10px; /* Prevent touching screen edges */
+  }
+
+  .hero_btn_group a {
+    flex: 1; /* Make both buttons equal width */
+    padding: 12px 5px; /* Reduce side padding to fit text */
+    font-size: 14px; /* Slightly smaller text for mobile */
+    text-align: center;
+    min-width: 0; /* Allows buttons to shrink below content size */
+    white-space: nowrap; /* Prevents text from wrapping to 2 lines */
+  }
+}
+
+/* If the screen is VERY narrow (iPhone SE), stack them vertically */
+@media (max-width: 350px) {
+  .hero_btn_group {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero_btn_group a {
+    width: 100%; /* Full width buttons */
+    max-width: 250px;
+  }
+}
