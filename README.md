@@ -1,4 +1,4 @@
-<h1>Portfolio Website (MERN Stack)</h1>
+<h1>Portfolio Website</h1>
 Welcome to my portfolio website, built with the MERN stack (MongoDB, Express.js, React.js, and Node.js). This project showcases my skills and experience through a dynamic and interactive web application.
 
 <h3>Features:</h3>
