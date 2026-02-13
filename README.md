@@ -9,6 +9,3 @@ Welcome to my portfolio website, built with the MERN stack (MongoDB, Express.js,
 <h4>Showcase Projects:</h4> Highlighting my work with detailed descriptions and links.
 
 
-<h4>preview for my website</h4>
-
-
