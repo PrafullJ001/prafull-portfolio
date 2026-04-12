@@ -1,171 +1,174 @@
-/* Section Spacing */
-.projects_section {
-    padding: 100px 5%;
-    max-width: 1200px;
-    margin: 0 auto;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  --bg-color: #050505; /* Matches Main.jsx exactly */
+  --card-bg: #111111;
+  --main-blue: #03B0FD;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.5);
 }
 
-.heading1 {
-    text-align: center;
-    color: white;
-    font-family: "Poppins", sans-serif;
-    font-size: 48px;
-    margin-bottom: 80px;
-    font-weight: 700;
+.neu_projects_section {
+  background-color: var(--bg-color);
+  padding: 120px 8%;
+  min-height: 100vh;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }
 
-.projects_list {
-    display: flex;
-    flex-direction: column;
-    gap: 100px; /* Space between projects */
+.header_wrapper_centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 1;
 }
 
-/* --- THE ROW LAYOUT --- */
-.project_row {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    position: relative;
+.section_heading {
+  font-size: clamp(36px, 6vw, 48px);
+  font-weight: 800;
+  color: white;
+  margin-bottom: 15px;
+  letter-spacing: -1px;
+  background: linear-gradient(to bottom, #ffffff, #a5a5a5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Reverse layout for even items (Zig-Zag) */
-.reverse_layout {
-    flex-direction: row-reverse;
+.heading_underline {
+  width: 80px;
+  height: 4px;
+  background: var(--main-blue);
+  border-radius: 10px;
+  box-shadow: 0 0 15px var(--main-blue);
 }
 
-/* --- IMAGE SIDE --- */
-.project_image_container {
-    flex: 1.2; /* Takes up slightly more space than text */
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.4s ease;
-    cursor: pointer;
+.neu_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 30px;
+  position: relative;
+  z-index: 1;
 }
 
-.project_img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(20%) contrast(1.1); /* Cinematic look */
-    transition: all 0.4s ease;
+/* Deep Black Neumorphic Card */
+.neu_card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Hover Effect on Image */
-.project_image_container:hover {
-    transform: translateY(-5px);
-    border-color: #03B0FD;
-    box-shadow: 0 20px 50px rgba(3, 176, 253, 0.15);
+.neu_card:hover {
+  transform: translateY(-10px);
+  border-color: var(--main-blue);
+  background: #15171c;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-.project_image_container:hover .project_img {
-    filter: none; /* Full color on hover */
-    transform: scale(1.03);
+.neu_card_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
-/* --- TEXT SIDE --- */
-.project_info {
-    flex: 1;
-    z-index: 2; /* Ensures text stays above if we overlap later */
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.neu_icon {
+  font-size: 1.8rem;
+  color: var(--main-blue);
 }
 
-/* Text alignment based on layout */
-.project_row .project_info { text-align: left; }
-.reverse_layout .project_info { text-align: right; }
-
-.project_title {
-    color: white;
-    font-family: "Poppins", sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    margin: 0;
+.neu_git_btn {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  transition: 0.3s;
 }
 
-/* The Description Box */
-.project_desc_box {
-    background: #112240; /* Deep blue/grey */
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    color: #a8b2d1; /* Soft grey text */
-    font-family: "Poppins", sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
+.neu_git_btn:hover {
+  color: white;
+  transform: rotate(15deg);
 }
 
-/* Tech List */
-.project_tech_list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    font-family: "Consolas", monospace;
-    font-size: 14px;
-    color: #03B0FD;
+.neu_card_body h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--text-primary);
+  line-height: 1.3;
 }
 
-/* Align tags based on layout */
-.reverse_layout .project_tech_list,
-.reverse_layout .project_links {
-    justify-content: flex-end;
+.neu_desc {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 15px;
+  margin-bottom: 30px;
 }
 
-/* --- GITHUB BUTTON --- */
-.github_btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 24px;
-    border: 1px solid #03B0FD;
-    border-radius: 4px;
-    color: #03B0FD;
-    text-decoration: none;
-    font-family: "Consolas", monospace;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    width: fit-content;
+.neu_tech_stack {
+  margin-top: auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-.github_btn:hover {
-    background: rgba(3, 176, 253, 0.1);
-    transform: translateY(-3px);
+.tech_tag_title {
+  display: block;
+  font-size: 11px;
+  font-family: 'Fira Code', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--main-blue);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
 }
 
-/* --- MOBILE RESPONSIVENESS --- */
-@media screen and (max-width: 900px) {
-    .project_row, .reverse_layout {
-        flex-direction: column; /* Stack vertically on mobile */
-        gap: 30px;
-    }
-
-    .project_image_container {
-        width: 100%;
-    }
-
-    .project_info, .reverse_layout .project_info {
-        text-align: left; /* Always align left on mobile */
-    }
-
-    .project_tech_list, .reverse_layout .project_tech_list,
-    .project_links, .reverse_layout .project_links {
-        justify-content: flex-start;
-    }
-}
-.project_img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* This keeps the image inside the box without stretching */
-    display: block;
-    border-radius: 8px; /* Optional: matches your box corners */
+.tech_tag_content {
+  font-size: 13px;
+  font-family: 'Fira Code', monospace;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.4;
 }
 
-.project_image_container {
-    background-color: #000; /* This is your "black box" background */
-    overflow: hidden;
-    position: relative;
-    /* Ensure height/width are defined if they aren't already */
+.neu_footer_btn {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #000; /* Black text on blue button */
+  font-weight: 700;
+  font-size: 14px;
+  padding: 14px;
+  border-radius: 50px;
+  background: var(--main-blue);
+  transition: 0.3s ease;
+}
+
+.neu_footer_btn:hover {
+  box-shadow: 0 0 20px rgba(3, 176, 253, 0.4);
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .neu_grid { grid-template-columns: 1fr; }
+  .section_heading { font-size: 32px; }
+}
+/* Change this in projects.css */
+.neu_projects_section {
+  background-color: var(--bg-color);
+  /* Top: 100px, Left/Right: 8%, Bottom: 20px (Reduced) */
+  padding: 100px 8% 20px 8%; 
+  min-height: auto; /* Changed from 100vh to let content define height */
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }
