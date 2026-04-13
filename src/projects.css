@@ -157,26 +157,21 @@
   box-shadow: 0 0 20px rgba(3, 176, 253, 0.4);
   transform: scale(1.02);
 }
-
 @media (max-width: 768px) {
-  .neu_grid { grid-template-columns: 1fr; }
-  .section_heading { font-size: 32px; }
+  .neu_grid { 
+    grid-template-columns: 1fr; 
+  }
+  .section_heading { 
+    font-size: 32px; 
+  }
 }
-/* Change this in projects.css */
+
 .neu_projects_section {
   background-color: var(--bg-color);
-  /* Top: 100px, Left/Right: 8%, Bottom: 20px (Reduced) */
+  /* Top: 100px, Left/Right: 8%, Bottom: 20px */
   padding: 100px 8% 20px 8%; 
-  min-height: auto; /* Changed from 100vh to let content define height */
+  min-height: auto; 
   position: relative;
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 9e42800 (updated resume)
-=======
-}
->>>>>>> 0e4e134 (solved error in  ContactForm)
