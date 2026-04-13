@@ -27,9 +27,21 @@ const handleSubmit = async (e) => {
   setStatus('Sending...');
   try {
     // Force the use of the current domain instead of a hardcoded localhost
+<<<<<<< HEAD
     //const response = await axios.post(`${window.location.origin}/api/send`, formData);
+<<<<<<< HEAD
      await axios.post(`${window.location.origin}/api/send`, formData);
     
+=======
+    await axios.post(`${window.location.origin}/api/send`, formData);
+
+=======
+   // const response = await axios.post(`${window.location.origin}/api/send`, formData);
+    //const response = await axios.post(`${window.location.origin}/api/send`, formData);
+    await axios.post(`${window.location.origin}/api/send`, formData);
+    
+>>>>>>> 9e42800
+>>>>>>> 0e4e134 (solved error in  ContactForm)
     setStatus('Message Sent Successfully!');
     alert("✅ Message sent successfully");
     setFormData({ name: '', email: '', message: '' });

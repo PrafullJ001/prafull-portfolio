@@ -6,21 +6,21 @@ import { motion } from 'framer-motion';
 import MyPhoto from './images/My_Image.jpg'; 
 
 const bioSegments = [
-  { text: "Hello! I'm ", bold: false },
+ { text: "Hello! I'm ", bold: false },
   { text: "Prafull Jadhav", bold: true },
-  { text: ", a final-year B.Tech Computer Science student at ", bold: false },
+  { text: ", a results-driven Software Engineer and final-year B.Tech Computer Science student at ", bold: false },
   { text: "VIIT Pune", bold: true },
-  { text: ". I have a strong command of Computer Engineering fundamentals like ", bold: false },
-  { text: "OS, DBMS, DSA, and Computer Networks", bold: true },
-  { text: ". I am a passionate ", bold: false },
+  { text: ". I possess a rigorous understanding of core Computer Engineering disciplines, including ", bold: false },
+  { text: "Data Structures & Algorithms, Operating Systems, DBMS, and Computer Networks", bold: true },
+  { text: ". I am a proficient ", bold: false },
   { text: "Full Stack Developer", bold: true },
-  { text: " with experience as a Web Development Intern at ", bold: false },
+  { text: " with professional experience gained through Internship at ", bold: false },
   { text: "Ultimez Technology", bold: true },
-  { text: ". My expertise lies in the ", bold: false },
+  { text: ". My technical expertise is centered on the ", bold: false },
   { text: "MERN Stack (MongoDB, Express, React, Node.js)", bold: true },
-  { text: ", and I am also proficient in ", bold: false },
+  { text: ", and I am highly adept in ", bold: false },
   { text: "Java, Python, and SQL", bold: true },
-  { text: ", with a strong focus on building scalable backend services.", bold: false },
+  { text: ", with a dedicated focus on engineering scalable backend architectures and high-performance services.", bold: false }
 ];
 
 const AboutMe = () => {
