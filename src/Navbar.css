@@ -54,7 +54,42 @@
 }
 .button:hover::after, .button.active::after { width: 100%; }
 
-.hamburger { display: none; cursor: pointer; color: var(--ink); }
+/* --- HAMBURGER ICON (3 lines -> X on open) --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  z-index: 1100; /* stays above the mobile menu overlay */
+}
+
+.hamburger .bar {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background-color: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.hamburger:hover .bar {
+  background-color: var(--accent);
+}
+
+/* Animate into an X when menu is open */
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
 
 .theme_toggle_btn {
   background: var(--mist);
@@ -77,7 +112,7 @@
 }
 
 @media screen and (max-width: 850px) {
-  .hamburger { display: block; }
+  .hamburger { display: flex; }
 
   .right {
     position: fixed;

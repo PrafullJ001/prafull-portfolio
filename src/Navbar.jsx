@@ -17,8 +17,10 @@ const Navbar = () => {
         </h1>
       </div>
 
-      <div className="hamburger" onClick={handleClick}>
-
+      <div className={click ? "hamburger active" : "hamburger"} onClick={handleClick}>
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
       </div>
 
       <div className={click ? "right active" : "right"}>
