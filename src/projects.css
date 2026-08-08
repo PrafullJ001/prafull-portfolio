@@ -175,3 +175,28 @@
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
+.neu_footer_links {
+    display: flex;
+    gap: 10px;
+}
+
+.neu_footer_links .neu_footer_btn {
+    flex: 1;
+    justify-content: center;
+}
+
+.neu_footer_btn_secondary {
+    opacity: 0.75;
+}
+
+.neu_footer_btn_secondary:hover {
+    opacity: 1;
+}
+.neu_desc_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}

@@ -6,21 +6,25 @@ import { motion } from 'framer-motion';
 import MyPhoto from './images/My_Image.jpg'; 
 
 const bioSegments = [
- { text: "Hello! I'm ", bold: false },
+  { text: "Hi, I'm ", bold: false },
   { text: "Prafull Jadhav", bold: true },
-  { text: ", a results-driven Software Engineer and final-year B.Tech Computer Science student at ", bold: false },
+  { text: " — a Full-Stack Developer graduating with a ", bold: false },
+  { text: "B.Tech in Computer Science", bold: true },
+  { text: " from ", bold: false },
   { text: "VIIT Pune", bold: true },
-  { text: ". I possess a rigorous understanding of core Computer Engineering disciplines, including ", bold: false },
-  { text: "Data Structures & Algorithms, Operating Systems, DBMS, and Computer Networks", bold: true },
-  { text: ". I am a proficient ", bold: false },
-  { text: "Full Stack Developer", bold: true },
-  { text: " with professional experience gained through Internship at ", bold: false },
-  { text: "Ultimez Technology", bold: true },
-  { text: ". My technical expertise is centered on the ", bold: false },
-  { text: "MERN Stack (MongoDB, Express, React, Node.js)", bold: true },
-  { text: ", and I am highly adept in ", bold: false },
-  { text: "Java, Python, and SQL", bold: true },
-  { text: ", with a dedicated focus on engineering scalable backend architectures and high-performance services.", bold: false }
+  { text: " (CGPA ", bold: false },
+  { text: "8.08", bold: true },
+  { text: "). I build with the ", bold: false },
+  { text: "MERN stack", bold: true },
+  { text: " — React, Node.js, Express, MongoDB — and I'm comfortable in ", bold: false },
+  { text: "Java, JavaScript, and SQL", bold: true },
+  { text: " too. ", bold: false },
+  { text: "\n\n", bold: false },
+  { text: "I spent 6 months as a ", bold: false },
+  { text: "Full-Stack Web Developer Intern at Ultimez Technology", bold: true },
+  { text: ", shipping production features end-to-end. My focus: ", bold: false },
+  { text: "secure REST APIs, scalable architecture, and clean, maintainable code", bold: true },
+  { text: " — with a strong DSA and DBMS foundation underneath it all.", bold: false }
 ];
 
 const AboutMe = () => {
@@ -101,10 +105,3 @@ const AboutMe = () => {
 }
 
 export default AboutMe;
-
-
-
-
-
-
-

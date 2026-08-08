@@ -11,4 +11,37 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+:root {
+  --ink: #ffffff;
+  --paper: #000000;
+  --mist: #111111;
+  --line: #333333;
+  --muted: rgba(255, 255, 255, 0.7);
+  --accent: #03B0FD;
+  --accent-hover: #6fc5ff;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --font-display: 'Poppins', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+}
 
+* { box-sizing: border-box; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  margin: 0;
+}
+h1, h2, h3 { font-family: var(--font-display); }
+* { transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 12px;
+}
+.heading1 { font-size: clamp(32px, 4.5vw, 48px); font-weight: 700; color: var(--ink); }
+.section_header { margin-bottom: 48px; max-width: 640px; }

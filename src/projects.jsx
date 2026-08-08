@@ -3,7 +3,7 @@ import './projects.css';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faLayerGroup, faLaptopCode, faHospital, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faLayerGroup, faLaptopCode, faBriefcase, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Projects = () => {
   const projects = [
@@ -12,21 +12,24 @@ const Projects = () => {
       content: 'Developed an AI-powered interview platform with real-time feedback using Gemini AI.',
       tech: 'React.js, Bootstrap, Node.js, Express.js, MongoDB, Gemini API.',
       icon: faLaptopCode,
-      github: "https://github.com/PrafullJ001/Ai-Powered-SmartInterview-Portal.git"
+      github: "https://github.com/PrafullJ001/Ai-Powered-SmartInterview-Portal.git",
+      live: "https://ai-powered-smart-interview-portal-t.vercel.app/"
     },
     {
       title: 'LearnIQ',
-      content: 'Developed a centralized Learning Management System to manage scalable coding challenges and assignment.' , 
+      content: 'Developed a centralized Learning Management System to manage scalable coding challenges and assignment.',
       tech: 'React.js, Tailwind CSS, Flask, PostgreSQL, Docker ',
       icon: faLayerGroup,
-      github: "https://github.com/PrafullJ001/LearnIQ.git"
+      github: "https://github.com/PrafullJ001/LearnIQ.git",
+      live: null
     },
     {
-      title: 'CreatorOS',
-      content: 'Built a centralized platform for content creators to post across multiple social platforms in one click. Developed a dashboard for hospital operations, including appointment scheduling and user management.',
-      tech: 'React.js, Bootstrap, TypeScript, Spring Boot, MongoDB, Docker. ',
-      icon: faHospital,
-      github: "https://github.com/PrafullJ001/CreatorOs.git"
+      title: 'EssMitra',
+      content: 'Built a full-stack farmer management platform with secure billing, JWT-based RBAC, and shareable payment statements.',
+      tech: 'React.js, Tailwind CSS, Node.js, Express.js, MongoDB, JWT, REST API',
+      icon: faBriefcase,
+      github: "https://github.com/PrafullJ001/EssMitra.git",
+      live: "https://shree-krushna-ess-services.vercel.app/"
     },
   ];
 
@@ -73,10 +76,23 @@ const Projects = () => {
               </div>
             </div>
 
-            <a href={project.github} target="_blank" rel="noreferrer" className="neu_footer_btn">
-              <span>View Source Code</span>
-              <FontAwesomeIcon icon={faExternalLinkAlt} />
-            </a>
+            {project.live ? (
+              <div className="neu_footer_links">
+                <a href={project.live} target="_blank" rel="noreferrer" className="neu_footer_btn">
+                  <span>Live Demo</span>
+                  <FontAwesomeIcon icon={faExternalLinkAlt} />
+                </a>
+                <a href={project.github} target="_blank" rel="noreferrer" className="neu_footer_btn neu_footer_btn_secondary">
+                  <span>Source Code</span>
+                  <FontAwesomeIcon icon={faGithub} />
+                </a>
+              </div>
+            ) : (
+              <a href={project.github} target="_blank" rel="noreferrer" className="neu_footer_btn">
+                <span>View Source Code</span>
+                <FontAwesomeIcon icon={faExternalLinkAlt} />
+              </a>
+            )}
           </motion.div>
         ))}
       </div>

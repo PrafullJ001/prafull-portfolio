@@ -22,7 +22,6 @@ const Skills = () => {
       icon: faCode,
       skills: [
         { name: "Java", img: `${iconBase}/java/java-original.svg` },
-        { name: "Python", img: `${iconBase}/python/python-original.svg` },
         { name: "JavaScript", img: `${iconBase}/javascript/javascript-original.svg` }
       ]
     },
@@ -52,8 +51,7 @@ const Skills = () => {
       icon: faDatabase,
       skills: [
         { name: "MongoDB", img: `${iconBase}/mongodb/mongodb-original.svg` },
-        { name: "MySQL", img: `${iconBase}/mysql/mysql-original.svg` },
-        { name: "Firebase", img: `${iconBase}/firebase/firebase-plain.svg` },
+        { name: "MySQL", img: `${iconBase}/mysql/mysql-original.svg` }
       ]
     },
     {
@@ -75,9 +73,10 @@ const Skills = () => {
         { name: "Git", img: `${iconBase}/git/git-original.svg` },
         { name: "GitHub", img: "https://img.icons8.com/fluency/48/github.png" },
         { name: "VS Code", img: `${iconBase}/vscode/vscode-original.svg` },
-        { name: "Vercel", img: `${iconBase}/vercel/vercel-original.svg` },
-        { name: "Render", img: "https://img.icons8.com/fluency/48/cloud.png" },
+        { name: "Docker", img: `${iconBase}/docker/docker-original.svg` },
+        { name: "AWS", img: `${iconBase}/amazonwebservices/amazonwebservices-original-wordmark.svg` },
         { name: "Postman", img: `${iconBase}/postman/postman-original.svg` }
+        
       ]
     }
   ];

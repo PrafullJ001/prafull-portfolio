@@ -32,7 +32,7 @@ const WhyHireMe = () => {
                     Built a scalable interview screening tool,
                     Focused on automated technical assessments and real-time <strong>Gemini AI</strong> feedback
                   </p>
-                  <div className="mini_tags flex flex-col">
+                  <div className="mini_tags">
                     <span>React</span><span>Bootstrap</span><span>Node.js</span>
                     <span>Express.js</span><span>MongoDB Atlas</span><span>AI</span>
                   </div>
@@ -58,16 +58,19 @@ const WhyHireMe = () => {
             <div className="card_content">
               <div className="edu_timeline">
                 <div className="edu_entry">
+                  <span className="edu_marker"></span>
                   <span className="year">2022 - 2026</span>
                   <p className="degree">B.Tech Computer Engineering</p>
-                  <p className="school">Vishwakarma Institute Of Information Pune</p>
+                  <p className="school">Vishwakarma Institute Of Information Technology Pune</p>
                 </div>
                 <div className="edu_entry">
+                  <span className="edu_marker"></span>
                   <span className="year">2021 - 2022</span>
                   <p className="degree">HSC (12th)</p>
                   <p className="school">KTHM College, Nashik</p>
                 </div>
                 <div className="edu_entry">
+                  <span className="edu_marker"></span>
                   <span className="year">2019 - 2020</span>
                   <p className="degree">SSC (10th)</p>
                   <p className="school">Vainateya Vidyalaya, Niphad</p>

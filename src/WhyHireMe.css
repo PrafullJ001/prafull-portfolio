@@ -1,6 +1,6 @@
 .terminal_section {
   background-color: #020205;
-  padding: 80px 5%;
+  padding: 100px 5%;
   font-family: 'Inter', sans-serif;
   color: #e0e0e0;
 }
@@ -16,83 +16,216 @@
   gap: 25px;
 }
 
+/* =========================================
+   CARD — gradient border + blue glow hover
+   (matches .profile_card_frame from About Me)
+   ========================================= */
 .terminal_card {
-  background: rgba(15, 15, 25, 0.6);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+              #0d0d0d;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 30px;
+  padding: 32px;
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(12px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* THE HOVER EFFECT: Glowing Border */
+.terminal_card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(3, 176, 253, 0.35);
+  box-shadow: 0 30px 60px rgba(3, 176, 253, 0.12);
+}
+
+/* Cursor-follow glow, now brand blue */
 .terminal_card::before {
   content: "";
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
   background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-              rgba(59, 130, 246, 0.15), transparent 40%);
-  z-index: -1;
+              rgba(3, 176, 253, 0.14), transparent 40%);
+  z-index: 0;
   opacity: 0;
   transition: opacity 0.5s;
+  pointer-events: none;
 }
 
-.terminal_card:hover {
-  border-color: rgba(59, 130, 246, 0.5);
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+.terminal_card:hover::before {
+  opacity: 1;
+}
+
+.card_content, .card_header {
+  position: relative;
+  z-index: 1;
 }
 
 .card_header {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 25px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding-bottom: 15px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 16px;
 }
 
-.dot { width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 10px #3b82f6; }
-.dot.blue { background: #3b82f6; box-shadow: 0 0 10px #3b82f6; }
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #03B0FD;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #03B0FD;
+}
+.dot.blue { background: #03B0FD; box-shadow: 0 0 10px #03B0FD; }
 
 .small_heading {
-  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
   letter-spacing: 3px;
-  font-weight: 800;
+  font-weight: 700;
   color: #888;
 }
 
-/* Experience Styling */
-.company { font-size: 1.5rem; color: #fff; margin: 0; }
-.type { font-size: 1; color: #3b82f6; background: rgba(59, 130, 246, 0.1); padding: 2px 8px; border-radius: 4px; vertical-align: middle; margin-left: 10px; }
-.duration { font-size: 1rem; color: #a9b7c6; margin-top: 5px; font-weight: 600; }
+/* =========================================
+   EXPERIENCE
+   ========================================= */
+.company {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.type {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #03B0FD;
+  background: rgba(3, 176, 253, 0.1);
+  border: 1px solid rgba(3, 176, 253, 0.25);
+  padding: 3px 10px;
+  border-radius: 20px;
+  vertical-align: middle;
+  margin-left: 10px;
+  letter-spacing: 0.5px;
+}
+
+.duration {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 8px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
 
 .project_callout {
   margin-top: 25px;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 22px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s ease;
 }
 
-.project_name { color: #3b82f6; font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
-.project_desc { font-size: 1rem; color: #a9b7c6; line-height: 1.6; }
+.terminal_card:hover .project_callout {
+  border-color: rgba(3, 176, 253, 0.15);
+}
 
-.mini_tags { display: flex; gap: 8px; margin-top: 15px; }
-.mini_tags span { font-size: 1rem; color: #a9b7c6; border: 1px solid #333; padding: 3px 10px; border-radius: 4px; }
+.project_name {
+  color: #03B0FD;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
 
-/* Education Styling */
-.edu_timeline { display: flex; flex-direction: column; gap: 25px; }
-.year { font-size: 0.75rem; font-weight: 800; color: #3b82f6; }
-.degree { font-size: 1rem; color: #fff; font-weight: 600; margin: 4px 0; }
-.school { font-size: 1rem; color: #a9b7c6; }
+.project_desc {
+  font-size: 0.95rem;
+  color: #a9b7c6;
+  line-height: 1.7;
+}
+
+.mini_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.mini_tags span {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: white;
+  background: #111;
+  border: 1px solid #333;
+  padding: 5px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.mini_tags span:hover {
+  background: #03B0FD;
+  border-color: #03B0FD;
+  color: #0d0d0d;
+  box-shadow: 0 0 12px rgba(3, 176, 253, 0.5);
+}
+
+/* =========================================
+   EDUCATION — connecting-line timeline
+   ========================================= */
+.edu_timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.edu_entry {
+  position: relative;
+  padding: 0 0 28px 26px;
+  border-left: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+.edu_entry:last-child {
+  border-left-color: transparent;
+  padding-bottom: 0;
+}
+
+.edu_marker {
+  position: absolute;
+  left: -7px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #0d0d0d;
+  border: 2px solid #03B0FD;
+  box-shadow: 0 0 8px rgba(3, 176, 253, 0.6);
+}
+
+.year {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #03B0FD;
+  letter-spacing: 0.5px;
+}
+
+.degree {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 600;
+  margin: 6px 0 2px;
+}
+
+.school {
+  font-size: 0.9rem;
+  color: #a9b7c6;
+}
 
 @media (max-width: 900px) {
+  .terminal_section { padding: 60px 5%; }
   .terminal_grid { grid-template-columns: 1fr; }
-}
-.mini_tags {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-  gap: 10px; /* Adds space between the tags */
-  max-width: 400px; /* Optional: limits the width so they don't stretch too far */
+  .terminal_card { padding: 24px; }
 }

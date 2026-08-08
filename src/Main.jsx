@@ -47,18 +47,17 @@ const Main = () => {
   }, [tick, delta]);
 
   // --- TECH ITEMS LIST ---
-  const techItems = (
+ const techItems = (
     <>
-      <span className="tech_item"><FontAwesomeIcon icon={faCodeBranch} /> React.js</span>
-      <span className="tech_item"><FontAwesomeIcon icon={faServer} /> Node.js</span>
-      <span className="tech_item"><FontAwesomeIcon icon={faDatabase} /> MongoDB</span>
-      <span className="tech_item"><FontAwesomeIcon icon={faLaptopCode} /> Express.js</span>
-      <span className="tech_item"><FontAwesomeIcon icon={faCodeBranch} /> Java</span>
-      <span className="tech_item"><FontAwesomeIcon icon={faServer} /> Python</span>
-      <span className="tech_item"><FontAwesomeIcon icon={faHtml5} /> HTML5</span>
-      <span className="tech_item"><FontAwesomeIcon icon={faCss3Alt} /> CSS3</span>
-      <span className="tech_item"><FontAwesomeIcon icon={faBootstrap} /> Bootstrap</span>
-      <span className="tech_item"><FontAwesomeIcon icon={faWind} /> Tailwind CSS</span>
+      <span className="tech_item"><FontAwesomeIcon icon={faCodeBranch} className="tech_icon icon_react" /> React.js</span>
+      <span className="tech_item"><FontAwesomeIcon icon={faServer} className="tech_icon icon_node" /> Node.js</span>
+      <span className="tech_item"><FontAwesomeIcon icon={faDatabase} className="tech_icon icon_mongo" /> MongoDB</span>
+      <span className="tech_item"><FontAwesomeIcon icon={faLaptopCode} className="tech_icon icon_express" /> Express.js</span>
+      <span className="tech_item"><FontAwesomeIcon icon={faCodeBranch} className="tech_icon icon_java" /> Java</span>
+      <span className="tech_item"><FontAwesomeIcon icon={faHtml5} className="tech_icon icon_html" /> HTML5</span>
+      <span className="tech_item"><FontAwesomeIcon icon={faCss3Alt} className="tech_icon icon_css" /> CSS3</span>
+      <span className="tech_item"><FontAwesomeIcon icon={faBootstrap} className="tech_icon icon_bootstrap" /> Bootstrap</span>
+      <span className="tech_item"><FontAwesomeIcon icon={faWind} className="tech_icon icon_tailwind" /> Tailwind CSS</span>
     </>
   );
 
