@@ -413,3 +413,17 @@
     max-width: 250px;
   }
 }
+@media screen and (max-width: 768px) {
+    /* ... your existing mobile rules stay as-is ... */
+
+    /* --- FIX: TICKER NO LONGER OVERLAPS CONTENT --- */
+    .Main_Wrapper {
+        padding-bottom: 20px; /* ticker now takes its own space, less padding needed */
+    }
+
+    .tech_ticker_wrapper {
+        position: relative;   /* was absolute — pulled it out of the overlap */
+        bottom: auto;
+        margin-top: 40px;     /* breathing room below the social pills */
+    }
+}
