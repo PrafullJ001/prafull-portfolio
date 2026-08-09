@@ -252,7 +252,22 @@
 
     .contact_container {
         flex-direction: column; /* Stack items vertically */
+        align-items: center;    /* FIX: center the stacked columns instead of left-aligning */
         gap: 50px;
+    }
+
+    .contact_actions {
+        width: 100%;             /* FIX: without this the flex item shrinks to content width and sits left */
+        align-items: center;     /* FIX: centers the cards/social row inside this column */
+    }
+
+    .contact_card_link {
+        width: 100%;              /* FIX: cards stretch full width instead of hugging their content */
+        box-sizing: border-box;
+    }
+
+    .social_row {
+        width: 100%;              /* FIX: keeps GitHub/LinkedIn row full width and centered */
     }
 
     .modern_form {
@@ -310,8 +325,23 @@
   .contact_container {
     display: flex;
     flex-direction: column;
+    align-items: center; /* FIX: keep centering consistent at this breakpoint too */
     gap: 2rem;
     padding: 0 15px; /* Adds breathing room on screen edges */
+  }
+
+  .contact_actions {
+    width: 100%;
+    align-items: center;
+  }
+
+  .contact_card_link {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .social_row {
+    width: 100%;
   }
 
   /* Make the form take full width on mobile */
