@@ -9,8 +9,8 @@ const Projects = () => {
   const projects = [
     {
       title: 'SmartInterview Preparation Portal with AI feedback',
-      content: 'Developed an AI-powered interview platform with real-time feedback using Gemini AI.',
-      tech: 'React.js, Bootstrap, Node.js, Express.js, MongoDB, Gemini API.',
+      content: 'Developed an AI-powered interview platform with real-time feedback using AI.',
+      tech: 'React.js, Bootstrap, Node.js, Express.js, MongoDB, AI.',
       icon: faLaptopCode,
       github: "https://github.com/PrafullJ001/Ai-Powered-SmartInterview-Portal.git",
       live: "https://ai-powered-smart-interview-portal-t.vercel.app/"

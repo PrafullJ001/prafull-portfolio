@@ -45,12 +45,12 @@ const WhyHireMe = () => {
                   <p className="project_name">AI-Powered Smart Interview Portal</p>
                   <p className="project_desc">
                     Built a scalable interview screening tool,
-                    Focused on automated technical assessments and real-time <strong>Gemini AI</strong> feedback
+                    Focused on automated technical assessments and real-time <strong>AI</strong> feedback
                   </p>
                   <div className="mini_tags">
                     <span>React</span><span>Bootstrap</span><span>Node.js</span>
                     <span>Express.js</span><span>MongoDB</span><span>AI</span>
-                  </div>
+                  </div>     
                 </div>
               </div>
             </div>
