@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 import ResumePDF from './Prafull_Jadhav_Resume.pdf';
+import { notify } from './notify';
 
 const roles = [
   "Computer Engineer",
@@ -130,7 +131,13 @@ const Main = () => {
             <a href="#contact" className="btn_fill">
               Contact me <FontAwesomeIcon icon={faArrowRight} className="btn_icon" />
             </a>
-            <a href={ResumePDF} target="_blank" rel="noreferrer" className="btn_glass">
+            <a
+              href={ResumePDF}
+              target="_blank"
+              rel="noreferrer"
+              className="btn_glass"
+              onClick={() => notify('resume')}
+            >
               <FontAwesomeIcon icon={faDownload} className="btn_icon" /> Resume
             </a>
           </motion.div>

@@ -8,6 +8,7 @@ import Skills from './Skills';
 import WhyHireMe from './WhyHireMe';
 import Projects from './projects';
 import ContactForm from './ContactForm';
+import { notify } from './notify';
 
 
 function App() {
@@ -19,6 +20,11 @@ function App() {
       setIsLoading(false);
     };
     fetchData();
+  }, []);
+
+  // visit notification (runs once when the site opens)
+  useEffect(() => {
+    notify('visit');
   }, []);
 
   return (
