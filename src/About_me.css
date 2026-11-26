@@ -1,5 +1,5 @@
 /* =========================================
-   1. SECTION CONTAINER
+   1. SECTION
    ========================================= */
 .about_me {
     padding: 100px 5%;
@@ -15,177 +15,242 @@
     font-family: "Poppins", sans-serif;
     font-size: 48px;
     font-weight: 700;
+    letter-spacing: -1px;
     margin-bottom: 60px;
     text-align: center;
 }
 
 /* =========================================
-   2. SPLIT LAYOUT (Left Photo / Right Terminal)
+   2. SPLIT LAYOUT
    ========================================= */
 .about_split_container {
     display: flex;
-    align-items: center; /* Vertically center */
+    align-items: center;
     justify-content: space-between;
     gap: 60px;
     width: 100%;
 }
 
 /* =========================================
-   3. LEFT SIDE: PROFILE CARD
+   3. PHOTO CARD
    ========================================= */
 .profile_card_container {
-    flex: 0 0 350px; /* Fixed width for profile */
+    flex: 0 0 340px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    gap: 22px;
 }
 
 .profile_card_frame {
-    width: 300px;
-    height: 300px;
-    border-radius: 20px;
-    padding: 10px;
-    
-    /* Gradient Border Effect */
-    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    
     position: relative;
+    width: 300px;
+    height: 340px;
+    padding: 3px;
+    border-radius: 28px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    background: #0d0d0d;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Spinning blue gradient ring */
+.profile_card_frame::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(from 0deg, transparent 0 55%, #03B0FD 80%, transparent 100%);
+    animation: spin 6s linear infinite;
 }
 
 .profile_card_frame:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 30px 60px rgba(3, 176, 253, 0.15); /* Blue glow on hover */
-    border-color: rgba(3, 176, 253, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 30px 70px rgba(3, 176, 253, 0.22);
 }
 
 .profile_img {
+    position: relative;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 12px;
-    filter: grayscale(20%); /* Slight B&W for style */
-    transition: filter 0.3s ease;
+    border-radius: 25px;
+    filter: grayscale(25%);
+    transition: filter 0.35s ease;
+    display: block;
 }
 
 .profile_card_frame:hover .profile_img {
-    filter: grayscale(0%); /* Full color on hover */
+    filter: grayscale(0%);
 }
 
-/* --- SOCIAL LINKS ROW --- */
-.social_links_row {
-    display: flex;
-    gap: 20px;
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
-.social_icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #111; /* Dark bg */
-    border: 1px solid #333;
-    display: flex;
+/* Availability chip */
+.status_chip {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    color: white;
-    transition: all 0.3s ease;
-    text-decoration: none;
+    gap: 10px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #c9d4e8;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
 }
 
-.social_icon:hover {
-    transform: translateY(-5px);
-    background: #03B0FD;
-    border-color: #03B0FD;
-    box-shadow: 0 0 15px rgba(3, 176, 253, 0.6);
+.status_dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #27c93f;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(39, 201, 63, 0.6); }
+    70%  { box-shadow: 0 0 0 9px rgba(39, 201, 63, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(39, 201, 63, 0); }
 }
 
 /* =========================================
-   4. RIGHT SIDE: TERMINAL WINDOW
+   4. STORY CARD
    ========================================= */
-.about_terminal_card {
-    flex: 1; /* Takes remaining space */
-    background-color: #0d0d0d; /* Deep terminal black */
-    border-radius: 12px;
-    border: 1px solid #333;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-    overflow: hidden;
-    font-family: 'Fira Code', monospace; /* Monospace is crucial for terminal look */
-    min-height: 300px;
+.about_content_card {
+    flex: 1;
+    min-width: 0;
+    padding: 34px 34px 30px;
+    border-radius: 20px;
+    background: #0b0f17;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+    font-family: "Poppins", sans-serif;
 }
 
-/* Window Header (Mac Style Dots) */
-.window_header {
-    background-color: #1a1a1a;
-    padding: 12px 20px;
-    display: flex;
-    gap: 8px;
-    border-bottom: 1px solid #333;
+.story {
+    min-height: 360px;
 }
 
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+.story_row:last-child {
+    padding-bottom: 0;
 }
 
-.red { background-color: #ff5f56; }
-.yellow { background-color: #ffbd2e; }
-.green { background-color: #27c93f; }
+.story_row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 20px;
+    padding-bottom: 26px;
+}
 
-/* Terminal Text Content */
-.terminal_content {
-    padding: 30px;
-    color: #a9b7c6; /* Soft terminal grey text */
-    font-size: 16px;
+/* connector line between steps */
+.story_row:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 21px;
+    top: 50px;
+    bottom: 4px;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(3, 176, 253, 0.5), rgba(3, 176, 253, 0.05));
+}
+
+.story_node {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    color: #03B0FD;
+    background: rgba(3, 176, 253, 0.1);
+    border: 1px solid rgba(3, 176, 253, 0.35);
+}
+
+.story_label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #03B0FD;
+}
+
+.bio {
+    margin: 0;
+    color: #a7b1c6;
+    font-size: 15.5px;
     line-height: 1.8;
 }
 
-.command_arrow {
-    color: #27c93f; /* Green prompt arrow */
-    margin-right: 10px;
-    font-weight: bold;
-}
-
 .highlight-text {
-    color: #03B0FD; /* Your blue brand color */
+    color: #fff;
     font-weight: 600;
 }
 
-/* Cursor Animation */
 .cursor {
     display: inline-block;
-    width: 8px;
+    width: 2px;
     height: 18px;
     background-color: #03B0FD;
-    margin-left: 5px;
-    animation: blink 1s infinite;
+    margin-left: 3px;
     vertical-align: middle;
+    animation: blink 1s infinite;
 }
 
 @keyframes blink {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    50%      { opacity: 0; }
 }
 
 /* =========================================
-   5. MOBILE RESPONSIVENESS
+   5. QUICK FACTS STRIP
+   ========================================= */
+.facts_strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    margin-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fact {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 28px 24px 4px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fact:first-child {
+    border-left: none;
+    padding-left: 0;
+}
+
+.fact_value {
+    font-family: "Poppins", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #03B0FD;
+}
+
+.fact_label {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: #8b95ad;
+}
+
+/* =========================================
+   6. RESPONSIVE
    ========================================= */
 @media screen and (max-width: 900px) {
-    .about_me {
-        padding: 60px 5%;
-    }
-
-    .heading {
-        font-size: 36px;
-    }
+    .about_me { padding: 60px 5%; }
+    .heading { font-size: 36px; margin-bottom: 40px; }
 
     .about_split_container {
-        flex-direction: column; /* Stack vertically */
+        flex-direction: column;
         gap: 40px;
     }
 
@@ -193,19 +258,38 @@
         flex: auto;
         width: 100%;
     }
-    
+
     .profile_card_frame {
         width: 250px;
-        height: 250px;
+        height: 290px;
     }
 
-    .about_terminal_card {
+    .about_content_card {
         width: 100%;
-        min-height: auto;
+        padding: 24px 20px;
     }
 
-    .terminal_content {
-        padding: 20px;
-        font-size: 14px; /* Smaller font on mobile */
+    .story { min-height: 480px; }
+    .story_row { grid-template-columns: 38px 1fr; gap: 14px; }
+    .story_node { width: 38px; height: 38px; }
+    .story_row:not(:last-child)::after { left: 18px; top: 44px; }
+    .bio { font-size: 14.5px; }
+
+    .facts_strip {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 40px;
     }
+
+    .fact:nth-child(3) {
+        border-left: none;
+        padding-left: 0;
+    }
+
+    .fact_value { font-size: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .profile_card_frame::before,
+    .status_dot,
+    .cursor { animation: none; }
 }

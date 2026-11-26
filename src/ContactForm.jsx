@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faPhone, faPaperPlane, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faPhone, faPaperPlane, faArrowRight, faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { motion } from 'framer-motion';
 
@@ -16,35 +15,33 @@ const ContactForm = () => {
     message: ''
   });
 
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setStatus('Sending...');
-  try {
-    // Force the use of the current domain instead of a hardcoded localhost
 
-    //const response = await axios.post(`${window.location.origin}/api/send`, formData);
-     await axios.post(`${window.location.origin}/api/send`, formData);
-  
-    setStatus('Message Sent Successfully!');
-    alert("✅ Message sent successfully");
-    setFormData({ name: '', email: '', message: '' });
-  } catch (error) {
-    // Detailed logging to see exactly what failed
-    console.error('Full Error Object:', error);
-    setStatus('Failed to send message.');
-    alert(`Error: ${error.response?.data?.error || error.message}`);
-  }
-};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (status === 'sending') return;
+    setStatus('sending');
+    try {
+      await axios.post(`${window.location.origin}/api/send`, formData);
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Full Error Object:', error);
+      setErrorMsg(error.response?.data?.error || error.message);
+      setStatus('error');
+    }
+    setTimeout(() => setStatus('idle'), 4000); // back to normal after 4s
+  };
 
   return (
     <div className="contact_section" id="contact">
-      <motion.h2 
+      <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -54,9 +51,9 @@ const handleSubmit = async (e) => {
       </motion.h2>
 
       <div className="contact_container">
-        
+
         {/* --- LEFT SIDE: ACTION CARDS --- */}
-        <motion.div 
+        <motion.div
           className="contact_actions"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -102,8 +99,8 @@ const handleSubmit = async (e) => {
         </motion.div>
 
         {/* --- RIGHT SIDE: FORM --- */}
-        <motion.form 
-          className="modern_form" 
+        <motion.form
+          className="modern_form"
           onSubmit={handleSubmit}
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -146,11 +143,18 @@ const handleSubmit = async (e) => {
             ></textarea>
           </div>
 
-          <button type="submit" className="neon_btn">
-            Send Message <FontAwesomeIcon icon={faPaperPlane} />
+          <button
+            type="submit"
+            className={`neon_btn ${status}`}
+            disabled={status === 'sending'}
+          >
+            {status === 'idle' && <>Send Message <FontAwesomeIcon icon={faPaperPlane} /></>}
+            {status === 'sending' && <><span className="spinner" /> Sending...</>}
+            {status === 'success' && <><FontAwesomeIcon icon={faCheck} /> Message Sent!</>}
+            {status === 'error' && <><FontAwesomeIcon icon={faXmark} /> Failed, try again</>}
           </button>
 
-          {status && <p className="form_status">{status}</p>}
+          {status === 'error' && <p className="form_status error">{errorMsg}</p>}
         </motion.form>
 
       </div>

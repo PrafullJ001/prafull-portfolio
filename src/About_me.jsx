@@ -3,105 +3,176 @@ import './About_me.css';
 import { motion } from 'framer-motion';
 
 // Import your photo here
-import MyPhoto from './images/My_Image.jpg'; 
+import MyPhoto from './images/My_Image.jpg';
 
 const bioSegments = [
-  { text: "Hi, I'm ", bold: false },
+  { text: "I'm ", bold: false },
   { text: "Prafull Jadhav", bold: true },
-  { text: " — a Full-Stack Developer graduating with a ", bold: false },
-  { text: "B.Tech in Computer Science", bold: true },
-  { text: " from ", bold: false },
-  { text: "VIIT Pune", bold: true },
-  { text: " (CGPA ", bold: false },
+  { text: ", a full-stack developer from Pune. I just finished my ", bold: false },
+  { text: "B.Tech in Computer Science at VIIT Pune", bold: true },
+  { text: " with a CGPA of ", bold: false },
   { text: "8.08", bold: true },
-  { text: "). I build with the ", bold: false },
+  { text: ".\n\nI build with the ", bold: false },
   { text: "MERN stack", bold: true },
-  { text: " — React, Node.js, Express, MongoDB — and I'm comfortable in ", bold: false },
-  { text: "Java, JavaScript, and SQL", bold: true },
-  { text: " too. ", bold: false },
-  { text: "\n\n", bold: false },
-  { text: "I spent 6 months as a ", bold: false },
-  { text: "Full-Stack Web Developer Intern at Ultimez Technology", bold: true },
-  { text: ", shipping production features end-to-end. My focus: ", bold: false },
-  { text: "secure REST APIs, scalable architecture, and clean, maintainable code", bold: true },
-  { text: " — with a strong DSA and DBMS foundation underneath it all.", bold: false }
+  { text: " and ship ", bold: false },
+  { text: "secure REST APIs", bold: true },
+  { text: " that real people use. ", bold: false },
+  { text: "EssMitra", bold: true },
+  { text: ", my farm-service platform, handles billing and payments for ", bold: false },
+  { text: "500+ farmers", bold: true },
+  { text: ". I also like adding ", bold: false },
+  { text: "AI features", bold: true },
+  { text: ", like the AI-powered mock interviews in ", bold: false },
+  { text: "SmartInterview", bold: true },
+  { text: ".\n\nAt ", bold: false },
+  { text: "Ultimez Technology", bold: true },
+  { text: " I spent six months as a full-stack intern building MERN apps. Off the keyboard, I led ", bold: false },
+  { text: "100+ student volunteers", bold: true },
+  { text: " as Computer Department Head of NSS-VIIT.", bold: false },
 ];
 
+const totalChars = bioSegments.reduce((sum, s) => sum + s.text.length, 0);
+
+const facts = [
+  { value: '8.08', label: 'CGPA, B.Tech CSE' },
+  { value: '500+', label: 'Manage Farmers on EssMitra' },
+  { value: '6 months', label: 'Full-stack internship' },
+  { value: '100+', label: 'Student volunteers led' },
+];
+
+const iconProps = {
+  viewBox: '0 0 24 24',
+  width: 20,
+  height: 20,
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.8,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
+  'aria-hidden': true,
+};
+
+const UserIcon = () => (
+  <svg {...iconProps}>
+    <circle cx="12" cy="8" r="4" />
+    <path d="M4 20c0-4 3.6-6 8-6s8 2 8 6" />
+  </svg>
+);
+
+const CodeIcon = () => (
+  <svg {...iconProps}>
+    <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+  </svg>
+);
+
+const BriefcaseIcon = () => (
+  <svg {...iconProps}>
+    <rect x="3" y="7" width="18" height="13" rx="2" />
+    <path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2M3 13h18" />
+  </svg>
+);
+
+const rows = [
+  { icon: <UserIcon />, label: 'Introduction' },
+  { icon: <CodeIcon />, label: 'What I build' },
+  { icon: <BriefcaseIcon />, label: 'Experience' },
+];
+
+// Type the bio up to `count` characters, grouped into paragraphs (split on blank lines)
+const renderParagraphs = (count) => {
+  let remaining = count;
+  const paras = [[]];
+  for (let i = 0; i < bioSegments.length && remaining > 0; i++) {
+    const seg = bioSegments[i];
+    const text = seg.text.slice(0, remaining);
+    remaining -= text.length;
+    text.split('\n\n').forEach((part, idx) => {
+      if (idx > 0) paras.push([]);
+      if (part) {
+        paras[paras.length - 1].push(
+          <span key={`${i}-${idx}`} className={seg.bold ? 'highlight-text' : ''}>
+            {part}
+          </span>
+        );
+      }
+    });
+  }
+  return paras.filter((p) => p.length > 0);
+};
+
 const AboutMe = () => {
-  const [displayedContent, setDisplayedContent] = useState([]);
-  const [currentSegmentIndex, setCurrentSegmentIndex] = useState(0);
-  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const prefersReducedMotion =
+    typeof window !== 'undefined' &&
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const [count, setCount] = useState(prefersReducedMotion ? totalChars : 0);
+  const [started, setStarted] = useState(prefersReducedMotion);
+  const done = count >= totalChars;
 
   useEffect(() => {
-    if (currentSegmentIndex >= bioSegments.length) return;
-
-    const timeout = setTimeout(() => {
-      const currentSegment = bioSegments[currentSegmentIndex];
-
-      setDisplayedContent((prev) => {
-        const newContent = [...prev];
-        if (!newContent[currentSegmentIndex]) {
-          newContent[currentSegmentIndex] = { ...currentSegment, text: "" };
-        }
-        newContent[currentSegmentIndex].text = currentSegment.text.slice(0, currentCharIndex + 1);
-        return newContent;
-      });
-
-      if (currentCharIndex < currentSegment.text.length - 1) {
-        setCurrentCharIndex(prev => prev + 1);
-      } else {
-        setCurrentSegmentIndex(prev => prev + 1);
-        setCurrentCharIndex(0);
-      }
-    }, 20);
-
-    return () => clearTimeout(timeout);
-  }, [currentSegmentIndex, currentCharIndex]); 
+    if (!started || done) return;
+    const id = setInterval(() => {
+      setCount((c) => Math.min(c + 2, totalChars));
+    }, 16);
+    return () => clearInterval(id);
+  }, [started, done]);
 
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2, duration: 0.5 }}
-      viewport={{ once: true }}
-      className='about_me' id="aboutMey"
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true, amount: 0.25 }}
+      onViewportEnter={() => setStarted(true)}
+      className="about_me"
+      id="aboutMey"
     >
-      <h2 className='heading'>About Me</h2>
+      <h2 className="heading">About Me</h2>
 
       <div className="about_split_container">
-        
-        {/* --- LEFT SIDE: MODERN PHOTO CARD --- */}
+        {/* LEFT: photo */}
         <div className="profile_card_container">
-            <div className="profile_card_frame">
-                <img src={MyPhoto} alt="Prafull Jadhav" className="profile_img" />
-            </div>
-            {/* Social Links Row Removed */}
-        </div>
-
-        {/* --- RIGHT SIDE: TERMINAL WINDOW --- */}
-        <div className='about_terminal_card'>
-          <div className="window_header">
-            <span className="dot red"></span>
-            <span className="dot yellow"></span>
-            <span className="dot green"></span>
+          <div className="profile_card_frame">
+            <img src={MyPhoto} alt="Prafull Jadhav" className="profile_img" />
           </div>
-
-          <div className="terminal_content">
-            <p>
-              <span className="command_arrow">{">"}</span>
-              {displayedContent.map((segment, index) => (
-                <span key={index} className={segment.bold ? "highlight-text" : ""}>
-                  {segment.text}
-                </span>
-              ))}
-              <span className="cursor">_</span>
-            </p>
+          <div className="status_chip">
+            <span className="status_dot" />
+            Open to full-time roles.
           </div>
         </div>
 
+        {/* RIGHT: story card */}
+        <div className="about_content_card">
+          <div className="story">
+            {renderParagraphs(count).map((para, i) => (
+              <div key={i} className="story_row">
+                <span className="story_node">{rows[i]?.icon}</span>
+                <div className="story_text">
+                  <span className="story_label">{rows[i]?.label}</span>
+                  <p className="bio">
+                    {para}
+                    {!done && i === renderParagraphs(count).length - 1 && <span className="cursor" />}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
       </div>
-    </motion.div>
+
+      {/* Quick facts */}
+      <div className="facts_strip">
+        {facts.map((f) => (
+          <div key={f.label} className="fact">
+            <span className="fact_value">{f.value}</span>
+            <span className="fact_label">{f.label}</span>
+          </div>
+        ))}
+      </div>
+    </motion.section>
   );
-}
+};
 
 export default AboutMe;

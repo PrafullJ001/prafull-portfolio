@@ -391,3 +391,67 @@
     margin-top: 10px;
   }
 }
+
+/* =========================================
+   6. SEND BUTTON STATES (loader / success / error)
+   ========================================= */
+.neon_btn:disabled {
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* spinner */
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 2.5px solid rgba(0, 0, 0, 0.25);
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* sending: soft pulse */
+.neon_btn.sending {
+    background: #03B0FD;
+    opacity: 0.9;
+    animation: btnPulse 1.2s ease-in-out infinite;
+}
+@keyframes btnPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(3, 176, 253, 0.45); }
+    50%      { box-shadow: 0 0 0 10px rgba(3, 176, 253, 0); }
+}
+
+/* success: green with a small pop */
+.neon_btn.success {
+    background: #27c93f;
+    color: #04210a;
+    animation: pop 0.35s ease;
+}
+.neon_btn.success:hover { background: #27c93f; transform: none; box-shadow: none; }
+
+/* error: red with a small shake */
+.neon_btn.error {
+    background: #ff5f57;
+    color: #fff;
+    animation: shake 0.4s ease;
+}
+.neon_btn.error:hover { background: #ff5f57; transform: none; box-shadow: none; }
+
+@keyframes pop {
+    0%   { transform: scale(0.96); }
+    60%  { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25%      { transform: translateX(-6px); }
+    75%      { transform: translateX(6px); }
+}
+
+.form_status.error { color: #ff8b85; }
+
+@media (prefers-reduced-motion: reduce) {
+    .spinner, .neon_btn.sending, .neon_btn.success, .neon_btn.error { animation: none; }
+}

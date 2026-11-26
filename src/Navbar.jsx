@@ -1,12 +1,29 @@
 import './Navbar.css';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 
+const links = [
+  { to: 'mainy', label: 'Home' },
+  { to: 'aboutMey', label: 'About Me' },
+  { to: 'skills', label: 'Skills' },
+  { to: 'project', label: 'Projects' },
+  { to: 'contact', label: 'Contact Me' },
+];
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
+  const [activeLink, setActiveLink] = useState('mainy');
+  const locked = useRef(false); // ignore spy while smooth scrolling
+
   const handleClick = () => setClick(!click);
   const closeMenu = () => setClick(false);
+
+  const handleLinkClick = (to) => {
+    setActiveLink(to);
+    locked.current = true;
+    setTimeout(() => { locked.current = false; }, 350); // a bit longer than duration
+    closeMenu();
+  };
 
   return (
     <div className='navbar'>
@@ -24,13 +41,22 @@ const Navbar = () => {
       </div>
 
       <div className={click ? "right active" : "right"}>
-        <ScrollLink to="mainy" spy={true} smooth={true} offset={-100} duration={500} className='button' onClick={closeMenu}>Home</ScrollLink>
-        <ScrollLink to="aboutMey" spy={true} smooth={true} offset={-100} duration={500} className='button' onClick={closeMenu}>About Me</ScrollLink>
-        <ScrollLink to="skills" spy={true} smooth={true} offset={-100} duration={500} className='button' onClick={closeMenu}>Skills</ScrollLink>
-        <ScrollLink to="project" spy={true} smooth={true} offset={-100} duration={500} className='button' onClick={closeMenu}>Projects</ScrollLink>
-        <ScrollLink to="contact" spy={true} smooth={true} offset={-100} duration={500} className='button' onClick={closeMenu}>Contact Me</ScrollLink>
-
-      
+        {links.map(({ to, label }) => (
+          <ScrollLink
+            key={to}
+            to={to}
+            spy={true}
+            smooth={true}
+            offset={-100}
+            duration={300}
+            activeClass="spy-active"
+            className={activeLink === to ? 'button active' : 'button'}
+            onSetActive={() => { if (!locked.current) setActiveLink(to); }}
+            onClick={() => handleLinkClick(to)}
+          >
+            {label}
+          </ScrollLink>
+        ))}
       </div>
     </div>
   );

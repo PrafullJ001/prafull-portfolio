@@ -25,34 +25,50 @@
 }
 .logo_text .last_name { color: var(--accent); }
 
+/* --- NAV LINKS (modern pill style) --- */
 .right {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 6px;
 }
 
 .button {
   color: var(--muted);
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 500;
+  letter-spacing: 0.01em;
   cursor: pointer;
   text-decoration: none;
-  position: relative;
-  padding-bottom: 2px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.15s ease, background 0.15s ease,
+              border-color 0.15s ease, transform 0.1s ease;
 }
-.button:hover, .button.active { color: var(--ink); }
 
-.button::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 1px;
-  left: 0;
-  bottom: -4px;
-  background-color: var(--accent);
-  transition: width 0.25s ease;
+/* Hover only on devices that really have hover (mouse/trackpad) */
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    color: var(--ink);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
 }
-.button:hover::after, .button.active::after { width: 100%; }
+
+.button.active {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+/* Instant feedback on press */
+.button:active {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  transform: scale(0.96);
+  transition: none;
+}
 
 /* --- HAMBURGER ICON (3 lines -> X on open) --- */
 .hamburger {
@@ -65,6 +81,7 @@
   height: 32px;
   cursor: pointer;
   z-index: 1100; /* stays above the mobile menu overlay */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hamburger .bar {
@@ -76,8 +93,10 @@
   transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
 }
 
-.hamburger:hover .bar {
-  background-color: var(--accent);
+@media (hover: hover) and (pointer: fine) {
+  .hamburger:hover .bar {
+    background-color: var(--accent);
+  }
 }
 
 /* Animate into an X when menu is open */
@@ -91,6 +110,7 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
+/* --- THEME TOGGLE (unused in JSX right now, kept as is) --- */
 .theme_toggle_btn {
   background: var(--mist);
   border: 1px solid var(--line);
@@ -111,6 +131,7 @@
   color: var(--accent);
 }
 
+/* --- MOBILE --- */
 @media screen and (max-width: 850px) {
   .hamburger { display: flex; }
 
@@ -124,12 +145,19 @@
     height: 90vh;
     align-items: center;
     justify-content: center;
-    gap: 28px;
+    gap: 14px;
     transition: 0.4s ease;
     border-top: 1px solid var(--line);
   }
 
   .right.active { left: 0; }
+
+  .button {
+    font-size: 18px;
+    padding: 12px 36px;
+    width: 220px;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 768px) {
