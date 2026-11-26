@@ -52,39 +52,57 @@
 }
 
 .action_text p {
-    color: rgba(255, 255, 255, 0.6);
+    color: #a7b1c6;
     font-size: 16px;
     line-height: 1.6;
     margin-bottom: 30px;
     max-width: 450px;
 }
 
-/* --- CONTACT CARDS (Phone/Email) --- */
+/* --- CONTACT CARDS (Phone/Email) - dark glass, blue glow, blue top line --- */
 .contact_card_link {
     display: flex;
     align-items: center;
     gap: 20px;
-    background: #111;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0) 45%),
+                #0b0f17;
     padding: 25px;
     border-radius: 16px;
     text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
 }
 
-.contact_card_link:hover {
-    border-color: #03B0FD;
-    transform: translateY(-5px);
-    background: #161616;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+/* thin blue light line on the top edge */
+.contact_card_link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(3, 176, 253, 0.8), transparent);
+    opacity: 0.45;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
 }
+
+.contact_card_link:hover {
+    border-color: rgba(3, 176, 253, 0.35);
+    transform: translateY(-5px);
+    box-shadow: 0 30px 70px rgba(3, 176, 253, 0.14);
+}
+
+.contact_card_link:hover::before { opacity: 1; }
 
 .icon_box {
     width: 50px;
     height: 50px;
     background: rgba(3, 176, 253, 0.1);
+    border: 1px solid rgba(3, 176, 253, 0.35);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -97,7 +115,7 @@
     display: block;
     font-family: "Inder", sans-serif;
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
+    color: #8b95ad;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 5px;
@@ -136,10 +154,11 @@
     justify-content: center;
     gap: 10px;
     padding: 15px;
-    background: #111;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
     border-radius: 12px;
-    color: rgba(255, 255, 255, 0.7);
+    color: #c9d4e8;
     text-decoration: none;
     font-family: "Inder", sans-serif;
     font-size: 14px;
@@ -147,9 +166,10 @@
 }
 
 .mini_social_btn:hover {
-    border-color: #03B0FD;
-    color: white;
-    background: #161616;
+    color: #fff;
+    background: linear-gradient(145deg, rgba(3, 176, 253, 0.22), rgba(3, 176, 253, 0.06));
+    border-color: rgba(3, 176, 253, 0.55);
+    box-shadow: 0 10px 24px -12px rgba(3, 176, 253, 0.7);
     transform: translateY(-3px);
 }
 
@@ -157,12 +177,28 @@
    4. RIGHT SIDE: MODERN FORM
    ========================================= */
 .modern_form {
+    position: relative;
+    overflow: hidden;
     flex: 1.2;
-    background: #111;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0) 45%),
+                #0b0f17;
     padding: 50px;
     border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+}
+
+/* thin blue light line on the top edge */
+.modern_form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(3, 176, 253, 0.8), transparent);
+    opacity: 0.6;
+    pointer-events: none;
 }
 
 .form_header h3 {
@@ -192,6 +228,11 @@
     outline: none;
 }
 
+.input_wrapper input::placeholder,
+.input_wrapper textarea::placeholder {
+    color: #8b95ad;
+}
+
 .input_wrapper textarea {
     resize: none; /* Prevent manual resize */
 }
@@ -199,7 +240,7 @@
 /* Input Focus State */
 .input_wrapper input:focus,
 .input_wrapper textarea:focus {
-    border-color: #03B0FD;
+    border-color: rgba(3, 176, 253, 0.55);
     background: rgba(3, 176, 253, 0.05);
     box-shadow: 0 0 15px rgba(3, 176, 253, 0.1);
 }
@@ -209,7 +250,7 @@
     width: 100%;
     padding: 18px;
     background: #03B0FD;
-    color: #000;
+    color: #04121a;
     border: none;
     border-radius: 50px;
     font-family: "Poppins", sans-serif;
@@ -288,12 +329,13 @@
   margin-top: 50px;
   padding: 20px 0;
   text-align: center;
+  color: white;
 }
 
 .footer_divider {
   border: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent, #ccc, transparent);
+  background: linear-gradient(to right, transparent, rgba(3, 176, 253, 0.55), transparent);
   margin-bottom: 20px;
   width: 80%;
   margin-left: auto;
@@ -304,20 +346,12 @@
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 5px;
-  color: #333; /* Change to #fff if you have a dark theme */
+  color: #03B0FD;
 }
 
 .footer_copyright {
   font-size: 0.9rem;
-  color: #777;
-}
-
-/* Optional: If you want a dark theme look */
- .contact_footer {
-  color: white;
-}
-.footer_name {
-  color: #03B0FD; 
+  color: #8b95ad;
 }
 
 /* Container adjustment for mobile stack */
@@ -369,8 +403,8 @@
     padding: 14px;
     font-size: 16px; /* Prevents auto-zoom on iOS */
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05); /* Assuming a dark theme based on 'neon_btn' */
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: #fff;
     box-sizing: border-box; /* Ensures padding doesn't break width */
   }
@@ -405,8 +439,8 @@
 .spinner {
     width: 18px;
     height: 18px;
-    border: 2.5px solid rgba(0, 0, 0, 0.25);
-    border-top-color: #000;
+    border: 2.5px solid rgba(4, 18, 26, 0.25);
+    border-top-color: #04121a;
     border-radius: 50%;
     animation: spin 0.7s linear infinite;
 }
@@ -468,10 +502,10 @@
     min-width: 290px;
     padding: 16px 22px 18px;
     border-radius: 16px;
-    background: rgba(17, 17, 17, 0.88);
+    background: rgba(11, 15, 23, 0.92);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
     font-family: "Poppins", sans-serif;
     overflow: hidden;
@@ -500,7 +534,7 @@
 
 .toast_text { display: flex; flex-direction: column; gap: 2px; }
 .toast_text strong { color: #fff; font-size: 15px; font-weight: 600; }
-.toast_text span { color: rgba(255, 255, 255, 0.65); font-size: 13px; }
+.toast_text span { color: #a7b1c6; font-size: 13px; }
 
 /* countdown bar */
 .toast_bar {

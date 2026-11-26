@@ -2,10 +2,12 @@
 
 :root {
   --bg-color: #050505; /* Matches Main.jsx exactly */
-  --card-bg: #111111;
+  --card-bg: #0b0f17; /* same dark as the Contact cards */
   --main-blue: #03B0FD;
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.5);
+  --text-secondary: #a7b1c6; /* same grey-blue as Contact text */
+  --text-muted: #8b95ad;
+  --card-border: rgba(255, 255, 255, 0.08);
 }
 
 .neu_projects_section {
@@ -34,9 +36,6 @@
   color: white;
   margin-bottom: 15px;
   letter-spacing: -1px;
-  background: linear-gradient(to bottom, #ffffff, #a5a5a5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .heading_underline {
@@ -55,23 +54,42 @@
   z-index: 1;
 }
 
-/* Deep Black Neumorphic Card */
+/* Dark glass card - same look as the Contact cards */
 .neu_card {
-  background: var(--card-bg);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0) 45%),
+              var(--card-bg);
   border-radius: 24px;
   padding: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
   display: flex;
   flex-direction: column;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* thin blue light line on the top edge */
+.neu_card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(3, 176, 253, 0.8), transparent);
+  opacity: 0.45;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
 .neu_card:hover {
   transform: translateY(-10px);
-  border-color: var(--main-blue);
-  background: #15171c;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border-color: rgba(3, 176, 253, 0.35);
+  box-shadow: 0 30px 70px rgba(3, 176, 253, 0.14);
 }
+
+.neu_card:hover::before { opacity: 1; }
 
 .neu_card_header {
   display: flex;
@@ -87,7 +105,7 @@
 
 .neu_git_btn {
   font-size: 1.4rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   transition: 0.3s;
 }
 
@@ -114,9 +132,9 @@
 .neu_tech_stack {
   margin-top: auto;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.03);
   border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .tech_tag_title {
@@ -133,7 +151,7 @@
 .tech_tag_content {
   font-size: 13px;
   font-family: 'Fira Code', monospace;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--text-muted);
   line-height: 1.4;
 }
 
@@ -144,7 +162,7 @@
   justify-content: center;
   gap: 10px;
   text-decoration: none;
-  color: #000; /* Black text on blue button */
+  color: #04121a; /* dark text on the blue button, same as Contact */
   font-weight: 700;
   font-size: 14px;
   padding: 14px;
@@ -154,7 +172,8 @@
 }
 
 .neu_footer_btn:hover {
-  box-shadow: 0 0 20px rgba(3, 176, 253, 0.4);
+  background: #6fc5ff;
+  box-shadow: 0 10px 20px rgba(3, 176, 253, 0.3);
   transform: scale(1.02);
 }
 @media (max-width: 768px) {

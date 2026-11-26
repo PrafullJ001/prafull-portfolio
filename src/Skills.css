@@ -43,23 +43,42 @@
     gap: 30px;
 }
 
-/* --- MODERN CARD DESIGN --- */
+/* --- MODERN CARD DESIGN (WhyHireMe colors: dark glass + blue glow) --- */
 .skill_card_modern {
-    background: #111; /* Clean Dark Background */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0) 45%),
+                #0b0f17;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
     padding: 30px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
 }
 
-.skill_card_modern:hover {
-    border-color: rgba(3, 176, 253, 0.5);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    background: #151515;
+/* thin blue light line on the top edge */
+.skill_card_modern::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(3, 176, 253, 0.8), transparent);
+    opacity: 0.45;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
 }
+
+.skill_card_modern:hover {
+    border-color: rgba(3, 176, 253, 0.35);
+    transform: translateY(-5px);
+    box-shadow: 0 30px 70px rgba(3, 176, 253, 0.14);
+}
+
+.skill_card_modern:hover::before { opacity: 1; }
 
 /* --- CARD HEADER --- */
 .card_header_modern {
@@ -67,7 +86,7 @@
     align-items: center;
     gap: 15px;
     margin-bottom: 25px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     padding-bottom: 15px;
 }
 
@@ -75,6 +94,7 @@
     width: 45px;
     height: 45px;
     background: rgba(3, 176, 253, 0.1);
+    border: 1px solid rgba(3, 176, 253, 0.35);
     color: #03B0FD;
     border-radius: 12px;
     display: flex;
@@ -88,6 +108,7 @@
     font-family: "Poppins", sans-serif;
     font-size: 22px;
     font-weight: 600;
+    letter-spacing: -0.01em;
 }
 
 /* --- CAPSULE CONTAINER (The key to mobile layout) --- */
@@ -102,8 +123,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
     padding: 10px 18px;
     border-radius: 50px; /* Pill shape */
     cursor: default;
@@ -117,18 +139,21 @@
 }
 
 .capsule_text {
-    color: rgba(255, 255, 255, 0.8);
+    color: #c9d4e8;
     font-family: "Fira Code", monospace;
     font-size: 13px;
     font-weight: 500;
+    transition: color 0.2s ease;
 }
 
-/* Hover effects handled by Framer Motion in JSX, 
-   but we add a fallback border change here */
+/* Hover: blue-tinted gradient + glow (scale is handled by Framer Motion in the JSX) */
 .skill_capsule:hover {
-    border-color: #03B0FD;
-    color: white;
+    background: linear-gradient(145deg, rgba(3, 176, 253, 0.22), rgba(3, 176, 253, 0.06));
+    border-color: rgba(3, 176, 253, 0.55);
+    box-shadow: 0 10px 24px -12px rgba(3, 176, 253, 0.7);
 }
+
+.skill_capsule:hover .capsule_text { color: #fff; }
 
 /* --- MOBILE RESPONSIVENESS --- */
 @media screen and (max-width: 768px) {
@@ -148,7 +173,7 @@
     .skill_capsule {
         padding: 8px 15px;
     }
-    
+
     .capsule_text {
         font-size: 12px;
     }
