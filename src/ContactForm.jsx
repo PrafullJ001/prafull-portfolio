@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faPaperPlane, faArrowRight, faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import BackToTopButton from './BackToTopButton';
 import './ContactForm.css';
@@ -16,7 +16,7 @@ const ContactForm = () => {
   });
 
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
-  const [errorMsg, setErrorMsg] = useState('');
+  const [toast, setToast] = useState(null);     // { type: 'success' | 'error', text: '...' }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,13 +30,17 @@ const ContactForm = () => {
     try {
       await axios.post(`${window.location.origin}/api/send`, formData);
       setStatus('success');
+      setToast({ type: 'success', text: 'Your message was sent successfully.' });
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       console.error('Full Error Object:', error);
-      setErrorMsg(error.response?.data?.error || error.message);
       setStatus('error');
+      setToast({ type: 'error', text: 'Failed to send message.' });
     }
-    setTimeout(() => setStatus('idle'), 4000); // back to normal after 4s
+    setTimeout(() => {
+      setStatus('idle');
+      setToast(null);
+    }, 4000);
   };
 
   return (
@@ -151,10 +155,8 @@ const ContactForm = () => {
             {status === 'idle' && <>Send Message <FontAwesomeIcon icon={faPaperPlane} /></>}
             {status === 'sending' && <><span className="spinner" /> Sending...</>}
             {status === 'success' && <><FontAwesomeIcon icon={faCheck} /> Message Sent!</>}
-            {status === 'error' && <><FontAwesomeIcon icon={faXmark} /> Failed, try again</>}
+            {status === 'error' && <><FontAwesomeIcon icon={faXmark} /> Failed to send</>}
           </button>
-
-          {status === 'error' && <p className="form_status error">{errorMsg}</p>}
         </motion.form>
 
       </div>
@@ -168,6 +170,29 @@ const ContactForm = () => {
           </p>
         </div>
       </footer>
+
+      {/* --- TOAST POPUP --- */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            className={`toast ${toast.type}`}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 40, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+            role="status"
+          >
+            <span className="toast_icon">
+              <FontAwesomeIcon icon={toast.type === 'success' ? faCheck : faXmark} />
+            </span>
+            <div className="toast_text">
+              <strong>{toast.type === 'success' ? 'Message Sent' : 'Failed to Send'}</strong>
+              <span>{toast.text}</span>
+            </div>
+            <span className="toast_bar" />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <BackToTopButton />
     </div>
